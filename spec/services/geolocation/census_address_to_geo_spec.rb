@@ -9,7 +9,7 @@ module Services
         {
           street: '902 Daniels St',
           city:   'Raleigh',
-          state:  'NC',
+          state:  'NC'
         }
       end
 

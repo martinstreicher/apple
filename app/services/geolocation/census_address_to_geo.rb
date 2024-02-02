@@ -16,6 +16,10 @@ module Services
           .dig('result', 'addressMatches')
           .first['coordinates']
           .with_indifferent_access
+          .tap do |data|
+            context.latitude  = data[:x]
+            context.longitude = data[:y]
+          end
       end
 
       private
@@ -32,7 +36,7 @@ module Services
           street:    street,
           state:     state,
           zip:       zip
-       }.compact
+        }.compact
       end
 
       def path

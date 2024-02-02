@@ -1,0 +1,16 @@
+base: &base
+  base_path: points
+  hostname: api.weather.gov
+  protocol: https
+
+development:
+  <<: *base
+  debug: true
+
+production:
+  <<: *base
+
+test:
+  <<: *base
+  debug: true
+
