@@ -1,0 +1,8 @@
+base: &base
+  base_path: geocoder
+  host: geocoding.geo.census.gov
+  port: 80
+  protocol: https
+
+development:
+  <<: *base
