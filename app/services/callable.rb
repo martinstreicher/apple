@@ -14,7 +14,8 @@ module Services
 
       def call
         if valid?
-          context.result ||= execute
+          result = execute
+          context.result ||= result
           return
         end
 
@@ -24,7 +25,7 @@ module Services
         )
       end
 
-      memoize def configuration(settings: @settings)
+      memoize def configuration
         config =
           begin
             Rails.application.config_for(service_name)

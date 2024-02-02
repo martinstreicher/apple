@@ -9,18 +9,37 @@ module Services
       validates :longitude, presence: true
 
       def execute
-        debuggger
-        1
+        target =
+          super
+          .with_indifferent_access
+          .dig('properties', 'forecastHourly')
+
+        retrieve_forecast target
       end
 
       private
 
       def coordinates
-        "#{latitude},#{longitude}"
+        "#{latitude.to_f.round(4)},#{longitude.to_f.round(4)}"
       end
 
       def path
         File.join(base_path, coordinates).to_s
+      end
+
+      def retrieve_forecast(uri)
+        uri = URI.parse(uri)
+
+        settings = {
+          hostname: uri.hostname,
+          path:     uri.path,
+          protocol: uri.scheme
+        }
+
+        Services::NetworkService
+          .call(settings: settings)
+          .result
+          .dig('properties', 'periods')
       end
     end
   end
