@@ -41,7 +41,13 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner', '~> 2.0'
+  gem 'database_cleaner-redis', '~> 2.0'
   gem 'rspec', '~> 3.12'
   gem 'rspec-rails', '~> 6.1'
   gem 'selenium-webdriver'
+  gem 'shoulda', '~> 4.0'
+  gem 'test-prof', '~> 1.3'
+  gem 'vcr', '~> 6.2'
+  gem 'webmock', '~> 3.19'
 end

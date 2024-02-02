@@ -1,8 +1,16 @@
 base: &base
   base_path: geocoder
-  host: geocoding.geo.census.gov
-  port: 80
+  benchmark: Public_AR_ACS2023
+  hostname: geocoding.geo.census.gov
   protocol: https
 
 development:
   <<: *base
+  debug: true
+
+production:
+  <<: *base
+
+test:
+  <<: *base
+  debug: true

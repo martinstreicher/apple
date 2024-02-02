@@ -7,13 +7,27 @@ module Services
   class NetworkService
     include Callable
 
+    ALL_NET_HTTP_ERRORS =
+      [
+        Errno::EINVAL,
+        Errno::ECONNRESET,
+        EOFError,
+        Net::HTTPBadResponse,
+        Net::HTTPHeaderSyntaxError,
+        Net::ProtocolError,
+        Timeout::Error
+      ].freeze
+
     CACHE_KEY_SEPARATOR  = '/'
     DEFAULT_CACHE_EXPIRY = 60 * 60
     DEFAULT_HOSTNAME     = 'localhost'
-    DEFAULT_PORT         = 80
     DEFAULT_PROTOCOL     = 'http'
 
-    def execute; end
+    def execute
+      return response_body if response_code == 200
+
+      fail! response_body
+    end
 
     private
 
@@ -40,7 +54,7 @@ module Services
     def body; end
 
     def debug?
-      configuration.fetch :debug, ENV['DEBUG_HTTP'].presence.to_boolean
+      configuration.fetch(:debug, ENV['DEBUG_HTTP'].presence).to_boolean
     end
 
     def headers
@@ -62,11 +76,11 @@ module Services
     end
 
     def http_verb
-      configuration.fetch(:verb, :get)
+      configuration.fetch :verb, :get
     end
 
     def path
-      configuration.fetch(:path, nil)
+      configuration.fetch :path, nil
     end
 
     def params
@@ -74,7 +88,7 @@ module Services
     end
 
     def port
-      configuration.fetch :port, DEFAULT_PORT
+      configuration.fetch :port, nil
     end
 
     def protocol
@@ -84,7 +98,7 @@ module Services
     memoize def response
       http.request request
     rescue *ALL_NET_HTTP_ERRORS => e
-      raise RequestError, e.message
+      fail! e
     end
 
     memoize def response_body
@@ -108,7 +122,10 @@ module Services
         end
 
         if basic_authentication.presence
-          req.basic_auth(basic_authentication[:username], basic_authentication[:password])
+          req.basic_auth(
+            basic_authentication[:username],
+            basic_authentication[:password]
+          )
         end
 
         headers.each_pair do |header, value|

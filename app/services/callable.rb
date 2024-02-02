@@ -14,8 +14,7 @@ module Services
 
       def call
         if valid?
-          result           = execute
-          context.result ||= result
+          context.result ||= execute
           return
         end
 

@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://geocoding.geo.census.gov/geocoder/locations/address?benchmark=Public_AR_ACS2023&city=Raleigh&format=json&state=NC&street=902%20Daniels%20St
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Fri, 02 Feb 2024 18:43:21 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '657'
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - Deny
+      Cache-Control:
+      - private, no-store
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1;mode=block
+      Vary:
+      - Origin
+      Set-Cookie:
+      - TS0193e6a1=01283c52a4e4f5bc55bc8c794921f844868311e37dbd4bffb8cb1c1f9cadcab79d88ccd2daceef26939df8cc8a2be7fac406940edf;
+        Path=/; Domain=.geocoding.geo.census.gov
+    body:
+      encoding: UTF-8
+      string: '{"result":{"input":{"address":{"city":"Raleigh","street":"902 Daniels
+        St","state":"NC"},"benchmark":{"isDefault":false,"benchmarkDescription":"Public
+        Address Ranges - ACS2023 Benchmark","id":"8","benchmarkName":"Public_AR_ACS2023"}},"addressMatches":[{"tigerLine":{"side":"R","tigerLineId":"636583575"},"coordinates":{"x":-78.65663507332098,"y":35.79621324351497},"addressComponents":{"zip":"27605","streetName":"DANIELS","preType":"","city":"RALEIGH","preDirection":"","suffixDirection":"","fromAddress":"900","state":"NC","suffixType":"ST","toAddress":"998","suffixQualifier":"","preQualifier":""},"matchedAddress":"902
+        DANIELS ST, RALEIGH, NC, 27605"}]}}'
+  recorded_at: Fri, 02 Feb 2024 18:43:21 GMT
+recorded_with: VCR 6.2.0
