@@ -25,7 +25,6 @@ module Services
         )
       end
 
-
       memoize def configuration(settings: @settings)
         config =
           begin
@@ -34,13 +33,13 @@ module Services
             settings.presence || {}
           end
 
-          config.deep_symbolize_keys
+        config.deep_symbolize_keys
       end
 
       def execute; end
 
-      def method_missing(method, *args, &block)
-        context.public_send(method, *args, &block)
+      def method_missing(method, ...)
+        context.public_send(method, ...)
       end
 
       #
@@ -51,7 +50,7 @@ module Services
       end
 
       memoize def service_name
-        self.class.name.underscore.gsub(/_(request|client|service)\z/i, "")
+        self.class.name.underscore.gsub(/_(request|client|service)\z/i, '')
       end
 
       def valid?

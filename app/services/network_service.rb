@@ -9,17 +9,16 @@ module Services
 
     CACHE_KEY_SEPARATOR  = '/'
     DEFAULT_CACHE_EXPIRY = 60 * 60
-    DEFAULT_HOSTNAME     = "localhost"
+    DEFAULT_HOSTNAME     = 'localhost'
     DEFAULT_PORT         = 80
-    DEFAULT_PROTOCOL     = "http"
+    DEFAULT_PROTOCOL     = 'http'
 
-    def execute
-    end
+    def execute; end
 
     private
 
     def cache_expiry
-      ENV.integer("SHOPIFY_CACHE_EXPIRY_IN_SECONDS", default: DEFAULT_CACHE_EXPIRY)
+      ENV.integer('SHOPIFY_CACHE_EXPIRY_IN_SECONDS', default: DEFAULT_CACHE_EXPIRY)
     end
 
     def cache_key
@@ -27,7 +26,7 @@ module Services
     end
 
     def cache_off?
-      ENV.fetch("WEATHER_CACHE_OFF", false).to_boolean
+      ENV.fetch('WEATHER_CACHE_OFF', false).to_boolean
     end
 
     def base_path
@@ -41,13 +40,13 @@ module Services
     def body; end
 
     def debug?
-      configuration.fetch :debug, ENV["DEBUG_HTTP"].presence.to_boolean
+      configuration.fetch :debug, ENV['DEBUG_HTTP'].presence.to_boolean
     end
 
     def headers
       configuration
         .fetch(:headers, {})
-        .transform_keys { |key| key.to_s.split("_").map(&:capitalize).join("-") }
+        .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join('-') }
         .transform_values(&:to_s)
     end
 
@@ -58,7 +57,7 @@ module Services
     def http
       Net::HTTP.new(uri.host, uri.port).tap do |httpee|
         httpee.set_debug_output($stdout) if debug?
-        httpee.use_ssl = uri.scheme == "https"
+        httpee.use_ssl = uri.scheme == 'https'
       end
     end
 
@@ -84,8 +83,8 @@ module Services
 
     memoize def response
       http.request request
-            rescue *ALL_NET_HTTP_ERRORS => exception
-              raise RequestError, exception.message
+    rescue *ALL_NET_HTTP_ERRORS => e
+      raise RequestError, e.message
     end
 
     memoize def response_body
@@ -125,13 +124,13 @@ module Services
     memoize def uri
       target =
         configuration[:uri] ||
-          ::Addressable::URI.new.tap do |uri|
-            uri.hostname     = hostname
-            uri.path         = path
-            uri.port         = port
-            uri.query_values = params
-            uri.scheme       = protocol
-          end
+        ::Addressable::URI.new.tap do |uri|
+          uri.hostname     = hostname
+          uri.path         = path
+          uri.port         = port
+          uri.query_values = params
+          uri.scheme       = protocol
+        end
 
       URI.parse target
     end
