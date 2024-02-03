@@ -7,6 +7,7 @@ ruby '3.2.2'
 gem 'addressable', '~> 2.8'
 gem 'awesome_print'
 gem 'bootsnap', require: false
+gem 'bundler-audit', '~> 0.9.1'
 gem 'factory_bot_rails', '~> 6.4'
 gem 'faker', '~> 3.2'
 gem 'haml', '~> 6.3'
@@ -43,6 +44,8 @@ group :development do
 end
 
 group :test do
+  gem 'brakeman', '~> 6.1'
+
   gem 'capybara'
   gem 'database_cleaner', '~> 2.0'
   gem 'database_cleaner-redis', '~> 2.0'

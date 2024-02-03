@@ -5,4 +5,3 @@ class Forecast
 
   attr_accessor :city, :state, :street, :zip
 end
-

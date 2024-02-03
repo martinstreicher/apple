@@ -84,7 +84,12 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -384,6 +389,8 @@ DEPENDENCIES
   addressable (~> 2.8)
   awesome_print
   bootsnap
+  brakeman (~> 6.1)
+  bundler-audit (~> 0.9.1)
   capybara
   database_cleaner (~> 2.0)
   database_cleaner-redis (~> 2.0)

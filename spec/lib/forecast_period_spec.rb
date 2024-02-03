@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe ForecastPeriod do
   subject(:forecast_period) { described_class.new(period) }
 

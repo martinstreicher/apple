@@ -22,13 +22,13 @@ RSpec.describe ForecastsController do
     let(:address_params) do
       {
         street: '331 NE 176',
-        zip: '33162'
+        zip:    '33162'
       }
     end
 
     it 'returns 200' do
       post :create, params: params
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end
