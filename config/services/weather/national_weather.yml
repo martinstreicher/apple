@@ -13,4 +13,3 @@ production:
 test:
   <<: *base
   debug: true
-

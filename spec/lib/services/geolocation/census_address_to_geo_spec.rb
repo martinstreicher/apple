@@ -38,8 +38,8 @@ module Services
       describe 'given a street number, street name, and a zip code' do
         let(:params) do
           {
-            street: '902 Daniels St',
-            zip:    '27605'
+            street: '331 NE 176',
+            zip:    '33162'
           }
         end
 
@@ -48,7 +48,7 @@ module Services
             expect(service.success?).to be(true)
 
             expect(service.result)
-              .to include('x' => -78.65663507332098656, 'y' => 35.79621324351497)
+              .to include('x' => -80.19426700143599, 'y' => 25.93663880232698)
           end
         end
       end

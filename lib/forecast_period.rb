@@ -20,6 +20,10 @@ class ForecastPeriod
     Time.zone.parse period['start_time']
   end
 
+  def to_h
+    period.with_indifferent_access
+  end
+
   private
 
   attr_reader :period

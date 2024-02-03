@@ -2,54 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://geocoding.geo.census.gov/geocoder/locations/address?benchmark=Public_AR_ACS2023&format=json&street=331%20NE%20176&zip=33162
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: ''
-    headers:
-      Date:
-      - Sat, 03 Feb 2024 17:05:53 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '634'
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - Deny
-      Cache-Control:
-      - private, no-store
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - 1;mode=block
-      Vary:
-      - Origin
-      Set-Cookie:
-      - TS0193e6a1=01283c52a412ef95872a1d3da3b9ae567a510fbc39cf615cb1fc5bb64b8b65d76b5e5ef574b6f678c2be60807136e94dfe50eb7478;
-        Path=/; Domain=.geocoding.geo.census.gov
-    body:
-      encoding: UTF-8
-      string: '{"result":{"input":{"address":{"zip":"33162","street":"331 NE 176"},"benchmark":{"isDefault":false,"benchmarkDescription":"Public
-        Address Ranges - ACS2023 Benchmark","id":"8","benchmarkName":"Public_AR_ACS2023"}},"addressMatches":[{"tigerLine":{"side":"L","tigerLineId":"116030649"},"coordinates":{"x":-80.19426700143599,"y":25.93663880232698},"addressComponents":{"zip":"33162","streetName":"176TH","preType":"","city":"MIAMI","preDirection":"NE","suffixDirection":"","fromAddress":"301","state":"FL","suffixType":"ST","toAddress":"399","suffixQualifier":"","preQualifier":""},"matchedAddress":"331
-        NE 176TH ST, MIAMI, FL, 33162"}]}}'
-  recorded_at: Sat, 03 Feb 2024 17:05:53 GMT
-- request:
-    method: get
-    uri: https://api.weather.gov/points/25.9366,-80.1943
+    uri: https://api.weather.gov/points/25.9366,-80.1942
     body:
       encoding: US-ASCII
       string: ''
@@ -74,26 +27,26 @@ http_interactions:
       Access-Control-Expose-Headers:
       - X-Correlation-Id, X-Request-Id, X-Server-Id
       X-Request-Id:
-      - 9ff0f6d6-5047-4dfd-93cf-d3e8287f68e3
+      - 240b48b4-7ab9-422f-b683-38f6361a4cb4
       X-Correlation-Id:
-      - 161e5d29
+      - d64b71a
       X-Server-Id:
-      - vm-lnx-nids-apiapp1.ncep.noaa.gov
+      - vm-lnx-nids-apiapp3.ncep.noaa.gov
       Vary:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=86400, s-maxage=120
+      - public, max-age=85971, s-maxage=120
       Expires:
-      - Sun, 04 Feb 2024 17:05:53 GMT
+      - Sun, 04 Feb 2024 16:58:48 GMT
       Date:
-      - Sat, 03 Feb 2024 17:05:53 GMT
+      - Sat, 03 Feb 2024 17:05:57 GMT
       Content-Length:
       - '3101'
       Connection:
       - keep-alive
       X-Edge-Request-Id:
-      - 818d2ff6
+      - 818d9c88
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -143,17 +96,17 @@ http_interactions:
                     }
                 }
             ],
-            "id": "https://api.weather.gov/points/25.9366,-80.1943",
+            "id": "https://api.weather.gov/points/25.9366,-80.1942",
             "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    -80.194299999999998,
+                    -80.194199999999995,
                     25.936599999999999
                 ]
             },
             "properties": {
-                "@id": "https://api.weather.gov/points/25.9366,-80.1943",
+                "@id": "https://api.weather.gov/points/25.9366,-80.1942",
                 "@type": "wx:Point",
                 "cwa": "MFL",
                 "forecastOffice": "https://api.weather.gov/offices/MFL",
@@ -178,7 +131,7 @@ http_interactions:
                         "state": "FL",
                         "distance": {
                             "unitCode": "wmoUnit:m",
-                            "value": 2696.2627068431998
+                            "value": 2698.6422064538001
                         },
                         "bearing": {
                             "unitCode": "wmoUnit:degree_(angle)",
@@ -193,7 +146,7 @@ http_interactions:
                 "radarStation": "KAMX"
             }
         }
-  recorded_at: Sat, 03 Feb 2024 17:05:53 GMT
+  recorded_at: Sat, 03 Feb 2024 17:05:57 GMT
 - request:
     method: get
     uri: https://api.weather.gov/gridpoints/MFL/109,58/forecast/hourly
@@ -230,18 +183,18 @@ http_interactions:
       - Accept,Feature-Flags,Accept-Language
       - Accept-Encoding
       Cache-Control:
-      - public, max-age=3106, s-maxage=3600
+      - public, max-age=3102, s-maxage=3600
       Expires:
       - Sat, 03 Feb 2024 17:57:39 GMT
       Date:
-      - Sat, 03 Feb 2024 17:05:53 GMT
+      - Sat, 03 Feb 2024 17:05:57 GMT
       Transfer-Encoding:
       - chunked
       Connection:
       - Transfer-Encoding
       - keep-alive
       X-Edge-Request-Id:
-      - 818d3625
+      - 818da01d
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains ; preload
     body:
@@ -4513,5 +4466,5 @@ http_interactions:
                 ]
             }
         }
-  recorded_at: Sat, 03 Feb 2024 17:05:53 GMT
+  recorded_at: Sat, 03 Feb 2024 17:05:57 GMT
 recorded_with: VCR 6.2.0

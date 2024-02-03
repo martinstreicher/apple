@@ -5,15 +5,25 @@ module Services
     RSpec.describe NationalWeatherService do
       subject(:service) { described_class.call(latitude: latitude, longitude: longitude) }
 
-      let(:latitude)  { 35.79621324351497 }
-      let(:longitude) { -78.65663507332098 }
+      let(:latitude)  { 25.9366 }
+      let(:longitude) { -80.1942 }
 
       describe 'given valid latitude and longitude' do
-        subject { described_class.new(latitude: latitude, longitude: longitude) }
+        subject(:service) { described_class.new(latitude: latitude, longitude: longitude) }
 
         it 'generates the proper URI' do
           expect(service.send(:uri).to_s)
-            .to eq('https://api.weather.gov/points/35.7962,-78.6566??')
+            .to eq("https://api.weather.gov/points/#{latitude},#{longitude}?")
+        end
+
+        it 'retrieves the forecast' do
+          VCR.use_cassette('national_weather_service/forecast') do
+            service.execute
+            expect(service.forecast).to be_a(Array)
+
+            expect(service.forecast.first.to_h.keys)
+              .to include('number', 'start_time', 'temperature', 'temperature_unit')
+          end
         end
       end
     end

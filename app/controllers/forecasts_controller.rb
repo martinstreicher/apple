@@ -18,8 +18,7 @@ class ForecastsController < ApplicationController
     )
   end
 
-  def new
-  end
+  def new; end
 
   private
 
