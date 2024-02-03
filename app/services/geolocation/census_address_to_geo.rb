@@ -6,9 +6,9 @@ module Services
       DEFAULT_RETURN_TYPE = 'locations'
       DEFAULT_SEARCH_TYPE = 'address'
 
-      validates :street, presence: true
       validates :city,   presence: true, if: -> { zip.blank? }
       validates :state,  presence: true, if: -> { zip.blank? }
+      validates :street, presence: true
       validates :zip,    presence: true, if: -> { city.blank? || state.blank? }
 
       def execute
