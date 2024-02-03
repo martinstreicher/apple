@@ -1,0 +1,11 @@
+-# locals: (forecast:)
+
+- forecast.each do |period|
+  .forecast-period
+    .forecast-period__date
+      = l period.start_time, format: :short
+    .forecast-period__temperature
+      = period.temperature
+      = period.temperature_unit
+    .forecast-period__icon
+      = image_tag period.icon

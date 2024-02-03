@@ -43,7 +43,7 @@ module Services
       end
 
       #
-      # The `context` responds to any method. If the context
+      # `context` responds to any method. If the context
       # lacks the key, it returns nil.
       def respond_to_missing?(_method_name, _include_private = false)
         true

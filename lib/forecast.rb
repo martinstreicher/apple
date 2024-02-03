@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 class Forecast
-  extend ActiveModel::Naming
+  include ActiveModel::Model
 
   attr_accessor :city, :state, :street, :zip
-
-  def to_key
-    ['forecast']
-  end
 end
+

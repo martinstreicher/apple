@@ -78,6 +78,7 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    awesome_print (1.9.2)
     base64 (0.2.0)
     bigdecimal (3.1.6)
     bindex (0.8.1)
@@ -381,6 +382,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8)
+  awesome_print
   bootsnap
   capybara
   database_cleaner (~> 2.0)

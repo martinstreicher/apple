@@ -3,7 +3,7 @@
 module Services
   module Weather
     RSpec.describe NationalWeatherService do
-      subject(:service) { described_class.new(latitude: latitude, longitude: longitude) }
+      subject(:service) { described_class.call(latitude: latitude, longitude: longitude) }
 
       let(:latitude)  { 35.79621324351497 }
       let(:longitude) { -78.65663507332098 }

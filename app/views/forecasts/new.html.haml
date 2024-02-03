@@ -1,5 +1,31 @@
-= form_for @forecast do |f|
-  = f.label :street
-  = f.string :street
+-# locals: (forecast: Forecast.new, errors: {})
 
-  = f.submit
+= form_for forecast, class: 'form', data: { turbo: false } do |f|
+  - if errors.any?
+    #error_explanation
+      %h2
+        = pluralize(errors.count, 'error')
+        prohibited this forecast from being saved.
+      %ul
+        - errors.full_messages.each do |message|
+          %li
+            = message
+
+  .field
+    = f.label :street
+    = f.text_field :street
+
+  .field
+    = f.label :city
+    = f.text_field :city
+
+  .field
+    = f.label :state
+    = f.text_field :state
+
+  .field
+    = f.label :zip
+    = f.text_field :zip
+
+  %br
+  = f.submit 'Get Forecast'

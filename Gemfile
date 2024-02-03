@@ -5,11 +5,12 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 gem 'addressable', '~> 2.8'
+gem 'awesome_print'
 gem 'bootsnap', require: false
 gem 'factory_bot_rails', '~> 6.4'
 gem 'faker', '~> 3.2'
-gem "haml", "~> 6.3"
-
+gem 'haml', '~> 6.3'
+gem 'haml-rails', '~> 2.1'
 gem 'importmap-rails'
 gem 'interactor', '~> 3.1'
 gem 'jbuilder'
@@ -53,6 +54,3 @@ group :test do
   gem 'vcr', '~> 6.2'
   gem 'webmock', '~> 3.19'
 end
-
-
-gem "haml-rails", "~> 2.1"

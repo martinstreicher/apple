@@ -17,8 +17,8 @@ module Services
           .first['coordinates']
           .with_indifferent_access
           .tap do |data|
-            context.latitude  = data[:x]
-            context.longitude = data[:y]
+            context.longitude = data[:x]
+            context.latitude  = data[:y]
           end
       end
 

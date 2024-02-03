@@ -14,10 +14,17 @@ module Services
           .with_indifferent_access
           .dig('properties', 'forecastHourly')
 
-        retrieve_forecast target
+        periods = retrieve_forecast(target)
+        context.forecast = convert_to_period_records(periods)
       end
 
       private
+
+      def convert_to_period_records(list_of_period_hashes)
+        list_of_period_hashes.map do |period|
+          ForecastPeriod.new(period)
+        end
+      end
 
       def coordinates
         "#{latitude.to_f.round(4)},#{longitude.to_f.round(4)}"

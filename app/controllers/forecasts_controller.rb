@@ -1,16 +1,24 @@
+# frozen_string_literal: true
+
 class ForecastsController < ApplicationController
   def create
-    @forecast = Services::Controllers::ForecastShowService.call(forecast_params)
+    result = Services::Forecasting::Report.call(forecast_params)
 
-    if @forecast.success?
-      render :show
-    else
-      render :new
+    if result.success?
+      render :show, locals: { forecast: result.forecast }
+      return
     end
+
+    render(
+      :new,
+      locals: {
+        errors:   result.errors,
+        forecast: Forecast.new(forecast_params)
+      }
+    )
   end
 
   def new
-    @forecast = Forecast.new
   end
 
   private
