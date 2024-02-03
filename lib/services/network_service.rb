@@ -4,7 +4,7 @@ require 'addressable/uri'
 require 'net/http'
 
 module Services
-  class NetworkService
+  class NetworkService # rubocop:disable Metrics/ClassLength
     include Callable
 
     ALL_NET_HTTP_ERRORS =

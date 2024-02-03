@@ -4,7 +4,7 @@ module Services
   module Callable
     extend ActiveSupport::Concern
 
-    included do
+    included do # rubocop:disable Metrics/BlockLength
       extend ActiveModel::Callbacks
       include ActiveModel::Validations
       include Interactor
