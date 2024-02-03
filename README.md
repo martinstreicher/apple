@@ -1,4 +1,4 @@
-[![Ruby on Rails CI](https://github.com/martinstreicher/apple/actions/workflows/rubyonrails.yml/badge.svg?branch=main)](https://github.com/martinstreicher/apple/actions/workflows/rubyonrails.yml)
+[![Ruby on Rails CI](https://github.com/martinstreicher/apple/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/martinstreicher/apple/actions/workflows/rubyonrails.yml)
 
 # Weather Forecasting with Rails
 
