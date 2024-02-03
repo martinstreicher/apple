@@ -13,6 +13,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      redis:
+      image: redis:latest
+      ports: ["6379:6379"]
+      options: --entrypoint redis-server
     env:
       RAILS_ENV: test
     steps:
