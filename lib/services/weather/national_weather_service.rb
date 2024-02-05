@@ -14,7 +14,11 @@ module Services
           .with_indifferent_access
           .dig('properties', 'forecastHourly')
 
-        periods = retrieve_forecast(target)
+        result = retrieve_forecast(target)
+        context.fail! if result.failure?
+
+        periods          = result.result.dig('properties', 'periods')
+        context.cached   = result.cached
         context.forecast = convert_to_period_records(periods)
       end
 
@@ -43,10 +47,7 @@ module Services
           protocol: uri.scheme
         }
 
-        Services::NetworkService
-          .call(settings: settings)
-          .result
-          .dig('properties', 'periods')
+        Services::NetworkService.call(settings: settings)
       end
     end
   end

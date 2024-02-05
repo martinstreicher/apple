@@ -1,4 +1,11 @@
--# locals: (forecast:)
+-# locals: (cached:, forecast:)
+
+%h3
+  Cached:
+  = cached.to_s
+
+%h3
+  Forecast:
 
 - forecast.each do |period|
   .forecast-period

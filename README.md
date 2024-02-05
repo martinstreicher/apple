@@ -28,10 +28,29 @@ rails s
 
 Point your browser to `localhost:3000`.
 
+## Configuration
+
+Three environment variables are available to control the behavior of the
+application.
+
+* `WEATHER_CACHE_OFF` (default: `false`): If caching is enabled in the
+  Rails environment, but `WEATHER_CACHE_OFF` is `true`, no caching occurs.
+
+* `WEATHER_CACHE_EXPIRY_IN_SECONDS` (default: `30 minutes`): Set this
+  variable to a number of seconds to control the expiry of cached information.
+
+* `WEATHER_DEBUG_HTTP` (default: `false`): Set this variable to `true`
+  to see all network requests and responses made by the application. The
+  value of `debug` in the configuration YAML files have precedence.
+
+Configuration of each service -- the geocoder and the forecast lookup --
+are controlled by YAML files found in _config/services_.
+
 ## Of Interest
 
 * All code has been policed by Rubocop. See [the configuration file](.rubocop.yml)
-  for the cops and rules applied.
+  for the cops and rules applied. (The Markdown linter has been applied
+  to this README.)
 
 * The controllers are very thin, as are the models. The application "glue"
   is provided via a set of services implemented per the Interactor pattern.
@@ -46,6 +65,9 @@ Point your browser to `localhost:3000`.
   * A localization file provides for customization of time formats.
   * YAML files are used to configure the endpoints of various services.
   * Turbo is disabled for the application to reduce complexity.
+
+* A minimal but functional Github action has been installed in this repo
+  to run tests after each push.
 
 ## Colophon
 
@@ -70,6 +92,7 @@ feature-rich. Some areas for improvement:
 * Enable and use Turbo, Hotwire, and Stimulus to provide single-page application
   behaavior and real-time forecase updates.
 
-* Implement more integration tests.
+* Implement more integration tests and include the _climate_control_ gem
+  to test environment variables.
 
-* Add Tailwind or its ilk and style pages.
+* Add the _Tailwind_ CSS framework or its ilk and style pages.

@@ -19,24 +19,41 @@ module Services
       ].freeze
 
     CACHE_KEY_SEPARATOR  = '/'
-    DEFAULT_CACHE_EXPIRY = 60 * 60
+    DEFAULT_CACHE_EXPIRY = 30.minutes.freeze
     DEFAULT_HOSTNAME     = 'localhost'
     DEFAULT_PROTOCOL     = 'http'
 
     def execute
-      return response_body if response_code == 200
+      context.cached = false
 
-      fail! response_body
+      if cache_off? || cache_key.blank?
+        return response_body if response_code == 200
+
+        fail! response_body
+      end
+
+      value = Rails.cache.read(cache_key)
+      if value
+        context.cached = true
+        return value
+      end
+
+      Rails.cache.write(cache_key, response_body, expires_in: cache_expiry)
+      response_body
     end
 
     private
 
     def cache_expiry
-      ENV.integer('SHOPIFY_CACHE_EXPIRY_IN_SECONDS', default: DEFAULT_CACHE_EXPIRY)
+      ENV.fetch('WEATHER_CACHE_EXPIRY_IN_SECONDS', DEFAULT_CACHE_EXPIRY).to_i
     end
 
     def cache_key
-      cache_key_segments.join(CACHE_KEY_SEPARATOR)
+      Array.wrap(cache_key_segments).join(CACHE_KEY_SEPARATOR)
+    end
+
+    def cache_key_segments
+      uri.to_s
     end
 
     def cache_off?
@@ -54,7 +71,7 @@ module Services
     def body; end
 
     def debug?
-      configuration.fetch(:debug, ENV['DEBUG_HTTP'].presence).to_boolean
+      configuration.fetch(:debug, ENV['WEATHER_DEBUG_HTTP'].presence).to_boolean
     end
 
     def headers
@@ -132,10 +149,6 @@ module Services
           req[header] = value
         end
       end
-    end
-
-    def segments
-      []
     end
 
     memoize def uri

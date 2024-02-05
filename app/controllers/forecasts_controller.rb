@@ -5,7 +5,7 @@ class ForecastsController < ApplicationController
     result = Services::Forecasting::Report.call(forecast_params)
 
     if result.success?
-      render :show, locals: { forecast: result.forecast }
+      render :show, locals: { cached: result.cached, forecast: result.forecast }
       return
     end
 
